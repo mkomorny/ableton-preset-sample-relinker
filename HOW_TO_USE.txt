@@ -1,0 +1,66 @@
+HOW TO USE: adg-sample-relink
+==================================================
+
+PURPOSE
+  Relink broken Ableton Drum Rack .adg presets so each pad points at the
+  ORIGINAL sample files using their true paths. This skill **ALWAYS** uses
+  original file paths and **NEVER** copies samples into any folder with the
+  drum racks (no Samples/ collection ever). Never uses a collected Samples/
+  folder as the source.
+
+CAPABILITIES
+  - Scan a folder of .adg Drum Racks (optional .adv too)
+  - Index original samples under a pack root by filename
+  - Skip sibling Samples/ next to .adg files; never index those copies. Keep original stems/instrument folders inside the drumkit.
+  - Delete those collected Samples/ folders after a real write
+  - Rewrite SampleRef paths to absolute originals
+  - Unescape XML names so Rum & Coke matches Rum &amp; Coke
+  - Dry-run preview before writing
+  - Sibling .adg.bak backup on write
+  - Report rewritten / already-ok / missing / duplicate-name conflicts
+
+USE CASES
+  - A pack's Drumkit folder of .adg files shows Offline in Live
+  - Racks point at Samples/<kit-name>/file.wav that was never collected
+  - Sample pack was moved; racks still use the old relative layout
+  - Need the same fix on the next pack: racks folder + original samples folder
+
+IDEAS
+  - Give both folders in one message so it runs without a follow-up
+  - "Samples are in the same directory" means the pack root, not Drumkit\Samples
+  - Dry-run first if the pack is huge or you are unsure of the sample root
+  - After a write, reload the rack in Live if it was already sitting Offline
+  - Same filenames in two folders get a conflict report instead of a guess
+
+PROMPTS YOU CAN PASTE
+  /adg-sample-relink
+
+  Fix these drum racks. Broken racks:
+  D:\Packs\Some Pack\Drumkit
+  Original samples:
+  D:\Packs\Some Pack
+  Delete the collected Samples folder next to the racks after relink.
+
+  Relink the .adg files in this folder to the WAVs in the parent pack folder.
+  Do not use Drumkit\Samples.
+
+  Dry-run: show which pads would be retargeted, do not write yet.
+
+  These Ableton drum racks are offline. Racks folder is X, samples folder is Y.
+
+EXAMPLE FLOW
+  You:  Fix the drum racks in
+        A:\...\Trap - Starter Pack Drumkit
+        Samples live in the parent pack folder.
+        Delete Drumkit\Samples after.
+  Model: Runs relink_adg_samples.py --backup --delete-collected.
+         Points pads at the original pack WAVs.
+         Deletes the collected Samples folder.
+         Reports rewritten vs missing/conflict.
+
+DEFAULT GOALS IF YOU DON'T NAME ONE
+  1. Ask for the racks folder and the original samples folder if either is missing
+  2. **ALWAYS** relink every broken .adg SampleRef to an original file under the provided sample root (typically the pack root, parent of any "* Drumkit" folder)
+  3. **NEVER** copy samples. **NEVER** use any collected Samples/ folder as source or target
+  4. Delete any collected <racks>/Samples folder after a successful write
+  5. Report rewritten vs already-ok vs missing/conflict in plain language
