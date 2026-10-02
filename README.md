@@ -20,3 +20,7 @@ When moving sample packs, transferring projects across machines, or organizing s
 ## Instructions
 
 See [INSTRUCTIONS.md](./INSTRUCTIONS.md) for batch relinking commands.
+
+## License
+
+This project is licensed under the GNU General Public License v3.0 (GPL-3.0) - see the [LICENSE](./LICENSE) file for details.
