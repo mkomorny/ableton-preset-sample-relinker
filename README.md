@@ -1,5 +1,11 @@
 # Ableton Preset Sample Relinker
 
+[![Automated Release](https://img.shields.io/badge/release-automated_batch_pipeline-blue.svg)](https://github.com/mkomorny)
+[![Pipeline Execution](https://img.shields.io/badge/dispatched_by-background_script-informational.svg)](https://github.com/mkomorny)
+
+> [!NOTE]
+> **Automated Distribution**: This repository was automatically sanitized, packaged, and published via a scheduled background batch staging pipeline. All file bundling, licensing, and repository synchronization were dispatched automatically by an automated release runner.
+
 A zero-dependency Python systems utility for Digital Audio Workstations that inspects, repairs, and dynamically relinks broken audio sample references (`SampleRef` / `FileRef`) inside Ableton Live Drum Racks and Instrument presets (`.adg` and `.adv`).
 
 ## Problem Solved
